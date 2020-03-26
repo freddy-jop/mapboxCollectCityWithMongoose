@@ -2,13 +2,12 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
-const { URI } = require('./config');
+const { URI } = require('./mongodbUri');
 
 const app = express();
 
 /* Routes */
-// const tasksRoutes = require('./routes/tasksRoutes');
-
+const regionsRoutes = require('./routes/regionsRoutes');
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -17,9 +16,9 @@ if (process.env.ENVIRONMENT == "dev") app.use(morgan("dev"));
 
 mongoose.connect(URI, {
   useNewUrlParser: true,
-   useUnifiedTopology: true
+  useUnifiedTopology: true
 });
 
-// app.use('/api/tasks', tasksRoutes);
+app.use('/api/regions', regionsRoutes);
 
 module.exports = app;
