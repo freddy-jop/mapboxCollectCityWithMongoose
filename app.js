@@ -8,6 +8,7 @@ const app = express();
 
 /* Routes */
 const regionsRoutes = require('./routes/regionsRoutes');
+const departmentsRoutes = require('./routes/departmentsRoutes');
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -20,5 +21,6 @@ mongoose.connect(URI, {
 });
 
 app.use('/api/regions', regionsRoutes);
+app.use('/api/departments', departmentsRoutes);
 
 module.exports = app;
